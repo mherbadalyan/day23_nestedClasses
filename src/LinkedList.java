@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class LinkedList implements List {
     private int size = 0;
     private Node first;
@@ -10,6 +12,30 @@ public class LinkedList implements List {
         Node(int val) {
             this.val = val;
         }
+    }
+
+    private class LinkedListIterator implements Iterator<Integer>{
+        private int index;
+
+        private Node node = first;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+        @Override
+        public Integer next() {
+            Integer temp;
+            index++;
+            temp = node.val;
+            node = node.next;
+            return temp;
+        }
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return new LinkedListIterator();
     }
 
     /**
@@ -114,6 +140,21 @@ public class LinkedList implements List {
         size--;
     }
 
+    /**
+     * returning given linkedList in String
+     */
+    @Override
+    public String toString() {
+        StringBuilder list = new StringBuilder();
+        Node node = first;
+        for (int i = 0; i < size; i++) {
+            list.append(node.val);
+            list.append(" ");
+            node = node.next;
+        }
+        return String.valueOf(list);
+    }
+
 
     // LinkedList not override helping private methods
 
@@ -160,20 +201,5 @@ public class LinkedList implements List {
         node.next = first;
         first = node;
         size++;
-    }
-
-    /**
-     * returning given linkedList in String
-     */
-    @Override
-    public String toString() {
-        StringBuilder list = new StringBuilder();
-        Node node = first;
-        for (int i = 0; i < size; i++) {
-            list.append(node.val);
-            list.append(" ");
-            node = node.next;
-        }
-        return String.valueOf(list);
     }
 }

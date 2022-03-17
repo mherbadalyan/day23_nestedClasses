@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        List list = new LinkedList();
+        LinkedList list = new LinkedList();
         list.add(10);
         list.add(20);
         list.add(30);
@@ -11,5 +11,9 @@ public class Main {
         System.out.println("Number in index 1 = " + list.get(1) );
         System.out.println("List is empty : " + list.isEmpty());
         System.out.println("Size of list = " + list.size());
+
+        for (Integer integer : list) {
+            System.out.print(integer + " ");
+        }
     }
 }

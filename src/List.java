@@ -1,4 +1,6 @@
-public interface List {
+import java.util.Iterator;
+
+public interface List extends Iterable<Integer>{
     int size();
 
     boolean isEmpty();
@@ -10,4 +12,8 @@ public interface List {
     void add(int index, int val);
 
     void delete(int index);
+
+    @Override
+    Iterator<Integer> iterator();
+
 }
