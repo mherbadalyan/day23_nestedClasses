@@ -1,3 +1,5 @@
+package linkedList;
+
 import java.util.Iterator;
 
 public class LinkedList implements List {
@@ -76,7 +78,7 @@ public class LinkedList implements List {
     }
 
     /**
-     * adding new Node at the end of the LinkedList.
+     * adding new Node at the end of the linkedList.LinkedList.
      */
     @Override
     public void add(int val) {
@@ -89,7 +91,7 @@ public class LinkedList implements List {
     }
 
     /**
-     * add new Node at the given index of the LinkedList.
+     * add new Node at the given index of the linkedList.LinkedList.
      */
     @Override
     public void add(int index, int val) {
@@ -156,7 +158,7 @@ public class LinkedList implements List {
     }
 
 
-    // LinkedList not override helping private methods
+    // linkedList.LinkedList not override helping private methods
 
     /**
      * adding first element in empty linkedList
@@ -168,7 +170,7 @@ public class LinkedList implements List {
     }
 
     /**
-     * adding given Node at end of LinkedList
+     * adding given Node at end of linkedList.LinkedList
      */
     private void addAtEnd(Node node) {
         last.next = node;
