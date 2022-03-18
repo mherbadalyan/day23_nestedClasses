@@ -2,7 +2,7 @@ package linkedList;
 
 import java.util.Iterator;
 
-public interface List extends Iterable<Integer>{
+public interface List extends Iterable<Integer> {
     int size();
 
     boolean isEmpty();

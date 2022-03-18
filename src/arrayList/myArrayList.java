@@ -3,7 +3,7 @@ package arrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class myArrayList<T> implements List<T>{
+public class myArrayList<T> implements List<T> {
     private int size;
     private int capacity = 5;
     private Object[] data = new Object[capacity];
@@ -29,8 +29,8 @@ public class myArrayList<T> implements List<T>{
      */
     @Override
     public boolean contains(T element) {
-        for (int i = 0; i < size ; i++) {
-            if (data[i].equals(element)){
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(element)) {
                 return true;
             }
         }
@@ -42,7 +42,7 @@ public class myArrayList<T> implements List<T>{
      */
     @Override
     public boolean add(T element) {
-        if (isDataFull()){
+        if (isDataFull()) {
             ensureCapacity();
         }
         data[size] = element;
@@ -58,9 +58,9 @@ public class myArrayList<T> implements List<T>{
         for (int i = 0; i < size; i++) {
             if (data[i].equals(element)) {
                 for (int j = i; j < size - 1; j++) {
-                 data[j] = data[j+1];
+                    data[j] = data[j + 1];
                 }
-                data[size -1] = null;
+                data[size - 1] = null;
                 size--;
             }
         }
@@ -81,7 +81,7 @@ public class myArrayList<T> implements List<T>{
      */
     @Override
     public T set(int index, T element) {
-        T oldElement = (T)data[index];
+        T oldElement = (T) data[index];
         data[index] = element;
         return oldElement;
     }
@@ -92,10 +92,10 @@ public class myArrayList<T> implements List<T>{
     @Override
     public void add(int index, T element) {
         isValidIndex(index);
-        if (isDataFull()){
+        if (isDataFull()) {
             ensureCapacity();
         }
-        for (int i = size; i > index ; i++) {
+        for (int i = size; i > index; i++) {
             data[i] = data[i - 1];
         }
         data[index] = element;
@@ -122,7 +122,7 @@ public class myArrayList<T> implements List<T>{
 
         @Override
         public boolean hasNext() {
-          return data[iteratorIndex] != null;
+            return data[iteratorIndex] != null;
         }
 
         @Override
@@ -135,6 +135,7 @@ public class myArrayList<T> implements List<T>{
 
     /**
      * checking is given index valid
+     *
      * @param index
      */
     private void isValidIndex(int index) {
@@ -148,7 +149,7 @@ public class myArrayList<T> implements List<T>{
      */
     private boolean isDataFull() {
         if (size == capacity) {
-            capacity = size + size>>1;
+            capacity = size + size >> 1;
             return true;
         }
         return false;
@@ -158,6 +159,6 @@ public class myArrayList<T> implements List<T>{
      * creating new Array and copying elements from old array
      */
     private void ensureCapacity() {
-        data = Arrays.copyOf(data,capacity);
+        data = Arrays.copyOf(data, capacity);
     }
 }

@@ -16,7 +16,7 @@ public class LinkedList implements List {
         }
     }
 
-    private class LinkedListIterator implements Iterator<Integer>{
+    private class LinkedListIterator implements Iterator<Integer> {
         private int index;
 
         private Node node = first;
@@ -25,6 +25,7 @@ public class LinkedList implements List {
         public boolean hasNext() {
             return index < size;
         }
+
         @Override
         public Integer next() {
             Integer temp;
@@ -123,7 +124,7 @@ public class LinkedList implements List {
 
     /**
      * deleting Node at given index.
-     * */
+     */
     @Override
     public void delete(int index) {
         isValidIndex(index);
