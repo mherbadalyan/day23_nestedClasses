@@ -62,20 +62,18 @@ public class LinkedList implements List {
      */
     @Override
     public int get(int index) {
-        isValidIndex(index);
+        checkValidIndex(index);
         if (index == size - 1) {
             return last.val;
-        } else {
-            Node tempNode = first;
+        }
+        Node tempNode = first;
             for (int i = 0; i <= index; i++) {
                 if (i == index) {
                     break;
-                } else {
-                    tempNode = tempNode.next;
                 }
+                tempNode = tempNode.next;
             }
             return tempNode.val;
-        }
     }
 
     /**
@@ -96,7 +94,7 @@ public class LinkedList implements List {
      */
     @Override
     public void add(int index, int val) {
-        isValidIndexForAdd(index);
+        checkValidIndexForAdd(index);
         Node node = new Node(val);
         if (size == 0) {
             addFirstElement(node);
@@ -112,12 +110,12 @@ public class LinkedList implements List {
         }
         Node tempNode = first;
         for (int i = 0; i < index; i++) {
-            if (i != index - 1) {
-                tempNode = tempNode.next;
-            } else {
+            if (i == index - 1) {
                 node.next = tempNode.next;
                 tempNode.next = node;
+                break;
             }
+            tempNode = tempNode.next;
         }
         size++;
     }
@@ -127,17 +125,20 @@ public class LinkedList implements List {
      */
     @Override
     public void delete(int index) {
-        isValidIndex(index);
+        checkValidIndex(index);
         if (index == 0) {
             first = first.next;
         } else {
             Node tempNode = first;
             for (int i = 1; i <= index; i++) {
                 if (index == i) {
+                    if (tempNode.next == last) {
+                        last = tempNode;
+                    }
                     tempNode.next = tempNode.next.next;
-                } else {
-                    tempNode = tempNode.next;
+                    break;
                 }
+                tempNode = tempNode.next;
             }
         }
         size--;
@@ -182,7 +183,7 @@ public class LinkedList implements List {
     /**
      * checking is given index valid for adding in that index
      */
-    private void isValidIndexForAdd(int index) {
+    private void checkValidIndexForAdd(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
@@ -191,7 +192,7 @@ public class LinkedList implements List {
     /**
      * checking is given index valid
      */
-    private void isValidIndex(int index) {
+    private void checkValidIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }

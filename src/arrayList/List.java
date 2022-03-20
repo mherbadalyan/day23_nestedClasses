@@ -13,12 +13,11 @@ public interface List<T> extends Iterable<T> {
 
     boolean remove(T element);
 
+    boolean removeAll();
+
     T get(int index);
 
     T set(int index, T element);
 
     void add(int index, T element);
-
-    Iterator<T> iterator();
-
 }

@@ -1,12 +1,20 @@
 package arrayList;
-
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class myArrayList<T> implements List<T> {
+public class MyArrayList<T> implements List<T> {
     private int size;
     private int capacity = 5;
-    private Object[] data = new Object[capacity];
+    private Object[] data;
+
+    public MyArrayList() {
+        this.data = new Object[capacity];
+    }
+
+    public MyArrayList(int capacity) {
+        this.capacity = capacity;
+        this.data = new Object[capacity];
+    }
 
     /**
      * returning size of list
@@ -68,11 +76,21 @@ public class myArrayList<T> implements List<T> {
     }
 
     /**
+     * removing all elements from list
+     */
+    @Override
+    public boolean removeAll() {
+        data = new Object[capacity];
+        size = 0;
+        return true;
+    }
+
+    /**
      * getting element in given index
      */
     @Override
     public T get(int index) {
-        isValidIndex(index);
+        checkIndex(index);
         return (T) data[index];
     }
 
@@ -81,6 +99,7 @@ public class myArrayList<T> implements List<T> {
      */
     @Override
     public T set(int index, T element) {
+        checkIndex(index);
         T oldElement = (T) data[index];
         data[index] = element;
         return oldElement;
@@ -91,14 +110,15 @@ public class myArrayList<T> implements List<T> {
      */
     @Override
     public void add(int index, T element) {
-        isValidIndex(index);
+        checkIndex(index);
         if (isDataFull()) {
             ensureCapacity();
         }
-        for (int i = size; i > index; i++) {
+        for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
         }
         data[index] = element;
+        size++;
     }
 
     @Override
@@ -122,7 +142,7 @@ public class myArrayList<T> implements List<T> {
 
         @Override
         public boolean hasNext() {
-            return data[iteratorIndex] != null;
+            return iteratorIndex != size;
         }
 
         @Override
@@ -138,27 +158,24 @@ public class myArrayList<T> implements List<T> {
      *
      * @param index
      */
-    private void isValidIndex(int index) {
+    private void checkIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }
 
     /**
-     * checking is given list full. If it full ensuring capacity of list
+     * checking is given list full.
      */
     private boolean isDataFull() {
-        if (size == capacity) {
-            capacity = size + size >> 1;
-            return true;
-        }
-        return false;
+        return  (size == capacity);
     }
 
     /**
-     * creating new Array and copying elements from old array
+     * ensuring capacity , creating new Array and copying elements from old array
      */
     private void ensureCapacity() {
+        capacity = size + (size >> 1);
         data = Arrays.copyOf(data, capacity);
     }
 }

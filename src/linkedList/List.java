@@ -14,8 +14,4 @@ public interface List extends Iterable<Integer> {
     void add(int index, int val);
 
     void delete(int index);
-
-    @Override
-    Iterator<Integer> iterator();
-
 }
